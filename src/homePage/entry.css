@@ -1,0 +1,8 @@
+.home-entry-intro-font {
+  font-size: 21px;
+}
+.home-entry-intro-pic-vid {
+  display: "flex";
+  justifycontent: "center";
+  alignitems: "center";
+}
