@@ -5,8 +5,8 @@ import TitleHeader from "../Shared/titleHeader/titleHeader";
 import UserInformation from "./userInformation";
 import Swal from "sweetalert2";
 import { useUser } from "../SesssionManager/session";
-const base_url = import.meta.env.BASE_URL;
 const SignUp = (props: any) => {
+  const base_url = import.meta.env.VITE_BASE_URL;
   const { login } = useUser();
   const navigate = useNavigate();
 
@@ -23,8 +23,12 @@ const SignUp = (props: any) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        Swal.fire(data).then(() => {
-          login(data);
+        login(data);
+        Swal.fire(
+          "Welcome to Moosecles!",
+          "Enjoy our members-only features",
+          "success"
+        ).then(() => {
           navigate("/");
         });
       })

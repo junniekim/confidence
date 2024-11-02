@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import TitleHeader from "../Shared/titleHeader/titleHeader";
 import Swal from "sweetalert2";
 import { useUser } from "../SesssionManager/session";
-const base_url = import.meta.env.BASE_URL;
 const SignIn = (props: any) => {
+  const base_url = import.meta.env.VITE_BASE_URL;
   const navigate = useNavigate();
   const { login } = useUser();
   const forgotPasswordHandler = () => {
@@ -44,7 +44,6 @@ const SignIn = (props: any) => {
           "error"
         );
       });
-    navigate("/");
   };
 
   return (
