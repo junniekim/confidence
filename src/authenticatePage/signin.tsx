@@ -13,20 +13,26 @@ const SignIn = (props: any) => {
   };
 
   const signInHandler = () => {
-    const email = (document.getElementById("email") as HTMLInputElement)?.value;
+    const emailAddress = (document.getElementById("email") as HTMLInputElement)
+      ?.value;
     const password = (document.getElementById("password") as HTMLInputElement)
       ?.value;
     (document.getElementById("email") as HTMLInputElement).value = "";
     (document.getElementById("password") as HTMLInputElement).value = "";
-    const query = `${base_url}/authenticate`;
+    const query = `${base_url}/user/signin`;
     fetch(query, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: email, password: password }),
+      body: JSON.stringify({ emailAddress: emailAddress, password: password }),
     })
       .then((response) => {
+        if (!response.ok) {
+          return response.json().then((error) => {
+            throw error.error;
+          });
+        }
         return response.json();
       })
       .then((data) => {
@@ -39,7 +45,7 @@ const SignIn = (props: any) => {
       })
       .catch((error) => {
         Swal.fire(
-          `Something went wrong: ${error}`,
+          error || "Something went wrong",
           "Please try again at a later time.",
           "error"
         );

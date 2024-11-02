@@ -13,7 +13,7 @@ const SignUp = (props: any) => {
   const [newUserData, setNewUserData] = useState(null);
 
   const signUpHandler = () => {
-    const query = `${base_url}/newAccount`;
+    const query = `${base_url}/user/signup`;
     fetch(query, {
       method: "POST",
       headers: {
@@ -21,7 +21,14 @@ const SignUp = (props: any) => {
       },
       body: JSON.stringify(newUserData),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((error) => {
+            throw error.error;
+          });
+        }
+        return response.json();
+      })
       .then((data) => {
         login(data);
         Swal.fire(
@@ -34,7 +41,7 @@ const SignUp = (props: any) => {
       })
       .catch((error) => {
         Swal.fire(
-          `Something went wrong: ${error}`,
+          error || "Something went wrong",
           "Please try again at a later time.",
           "error"
         );
