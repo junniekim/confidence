@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useUser } from "../SesssionManager/session";
 import "./navigation.css";
 const Navigation: React.FC = () => {
+  const { logout, user } = useUser();
   const location = useLocation();
   // isOpen is by default false
   const [isOpen, setIsOpen] = useState(false);
@@ -30,59 +32,55 @@ const Navigation: React.FC = () => {
           </button>
         </div>
       </div>
-      <div className="navButtonHolder col-12 col-md-6">
+      <div
+        className={`${
+          isOpen
+            ? "collapsed-menu col-12 text-center"
+            : "navButtonHolder col-12 col-md-6"
+        }`}
+      >
         <Link
           to="/"
           className={`navButton ${location.pathname === "/" ? "active" : ""}`}
+          onClick={() => {
+            if (isOpen) {
+              setIsOpen(false);
+            }
+          }}
         >
           Home
         </Link>
-        <Link
-          to="/"
-          className={`navButton ${location.pathname === "/" ? "active" : ""}`}
-        >
-          Home2
-        </Link>
-        <Link
-          to="/"
-          className={`navButton ${location.pathname === "/" ? "active" : ""}`}
-        >
-          Home3
-        </Link>
+        {!user && (
+          <Link
+            to="/authenticate"
+            className={`navButton ${
+              location.pathname === "/authenticate" ? "active" : ""
+            }`}
+            onClick={() => {
+              if (isOpen) {
+                setIsOpen(false);
+              }
+            }}
+          >
+            Authenticate
+          </Link>
+        )}
+        {user && (
+          <Link to="/" className="navButton">
+            <button
+              className="navButton sign-out"
+              onClick={() => {
+                if (isOpen) {
+                  setIsOpen(false);
+                }
+                logout();
+              }}
+            >
+              Sign out
+            </button>
+          </Link>
+        )}
       </div>
-      {/* If the screen is small enough and is opened is true */}
-      {/* Open menu that closes upon click */}
-      {isOpen && (
-        <div className="collapsed-menu col-12 text-center">
-          <Link
-            to="/"
-            className={`navButton ${location.pathname === "/" ? "active" : ""}`}
-            onClick={() => {
-              setIsOpen(false);
-            }}
-          >
-            Home
-          </Link>
-          <Link
-            to="/"
-            className={`navButton ${location.pathname === "/" ? "active" : ""}`}
-            onClick={() => {
-              setIsOpen(false);
-            }}
-          >
-            Home2
-          </Link>
-          <Link
-            to="/"
-            className={`navButton ${location.pathname === "/" ? "active" : ""}`}
-            onClick={() => {
-              setIsOpen(false);
-            }}
-          >
-            Home3
-          </Link>
-        </div>
-      )}
     </div>
   );
 };

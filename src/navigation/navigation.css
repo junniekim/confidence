@@ -38,6 +38,11 @@
 .active {
   color: grey;
 }
+.sign-out {
+  margintop: -1px;
+  background: transparent;
+  border: none;
+}
 
 @media (max-width: 768px) {
   .navButtonHolder {
