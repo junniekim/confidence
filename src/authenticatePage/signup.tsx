@@ -5,7 +5,7 @@ import TitleHeader from "../Shared/titleHeader/titleHeader";
 import UserInformation from "./userInformation";
 import Swal from "sweetalert2";
 import { useUser } from "../SesssionManager/session";
-
+const base_url = import.meta.env.BASE_URL;
 const SignUp = (props: any) => {
   const { login } = useUser();
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const SignUp = (props: any) => {
   const [newUserData, setNewUserData] = useState(null);
 
   const signUpHandler = () => {
-    const query = `http://localhost:3000/newAccount`;
+    const query = `${base_url}/newAccount`;
     fetch(query, {
       method: "POST",
       headers: {

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import TitleHeader from "../Shared/titleHeader/titleHeader";
 import Swal from "sweetalert2";
 import { useUser } from "../SesssionManager/session";
-
+const base_url = import.meta.env.BASE_URL;
 const SignIn = (props: any) => {
   const navigate = useNavigate();
   const { login } = useUser();
@@ -18,7 +18,7 @@ const SignIn = (props: any) => {
       ?.value;
     (document.getElementById("email") as HTMLInputElement).value = "";
     (document.getElementById("password") as HTMLInputElement).value = "";
-    const query = `http://localhost:3000/authenticate`;
+    const query = `${base_url}/authenticate`;
     fetch(query, {
       method: "POST",
       headers: {
