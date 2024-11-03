@@ -55,7 +55,6 @@ const ProfilePage = () => {
       setMode("edit");
     } else {
       const query = `${base_url}/user/data/${user?.id}`;
-      console.log(query);
       fetch(query, {
         method: "PUT",
         headers: {
@@ -150,12 +149,8 @@ const ProfilePage = () => {
     return age;
   }
   const getMostRecentWeight = (): number | null => {
-    if (
-      localUser &&
-      localUser.bodyWeightHistory &&
-      localUser.bodyWeightHistory.length > 0
-    ) {
-      const sortedWeights = localUser.bodyWeightHistory.sort(
+    if (localUser && localUser.progress && localUser.progress.length > 0) {
+      const sortedWeights = localUser.progress.sort(
         (a: any, b: any) =>
           new Date(b.recordedOn).getTime() - new Date(a.recordedOn).getTime()
       );
@@ -180,10 +175,9 @@ const ProfilePage = () => {
             <h5>☎️ Phone : {localUser?.phoneNumber}</h5>
           )}
 
-          {localUser?.bodyWeightHistory &&
-            localUser?.bodyWeightHistory.length > 0 && (
-              <h5>🏃‍♂️ Most Recent Bodyweight : {getMostRecentWeight()} kgs</h5>
-            )}
+          {localUser?.progress && localUser?.progress.length > 0 && (
+            <h5>🏃‍♂️ Most Recent Bodyweight : {getMostRecentWeight()} kgs</h5>
+          )}
         </div>
       ) : (
         <div className="row">
