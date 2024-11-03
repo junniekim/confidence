@@ -176,7 +176,10 @@ const ProfilePage = () => {
             )}
           </h2>
           <h5>✉️ Email : {localUser?.emailAddress}</h5>
-          <h5>☎️ Phone : {localUser?.phoneNumber}</h5>
+          {localUser?.phoneNumber && (
+            <h5>☎️ Phone : {localUser?.phoneNumber}</h5>
+          )}
+
           {localUser?.bodyWeightHistory &&
             localUser?.bodyWeightHistory.length > 0 && (
               <h5>🏃‍♂️ Most Recent Bodyweight : {getMostRecentWeight()} kgs</h5>
