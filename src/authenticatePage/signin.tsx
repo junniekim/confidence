@@ -37,7 +37,7 @@ const SignIn = (props: any) => {
             }
             return response.json();
           })
-          .then((data) => {
+          .then(() => {
             Swal.fire({
               title: "Email sent",
               text: "Please check your email.",

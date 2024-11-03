@@ -4,6 +4,7 @@ import UserInformation from "../authenticatePage/userInformation";
 import { useUser } from "../SesssionManager/session";
 import { LocalUserData } from "../authenticatePage/userInformation";
 import { useNavigate } from "react-router-dom";
+import "./profilePage.css";
 import Swal from "sweetalert2";
 const ProfilePage = () => {
   const navigate = useNavigate();
