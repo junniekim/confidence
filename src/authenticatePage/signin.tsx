@@ -19,7 +19,7 @@ const SignIn = (props: any) => {
       confirmButtonText: "Submit",
       showLoaderOnConfirm: true,
       preConfirm: (email) => {
-        const query = `http://localhost:3000/user/reset`;
+        const query = `${base_url}/user/reset`;
         fetch(query, {
           method: "PUT",
           headers: {

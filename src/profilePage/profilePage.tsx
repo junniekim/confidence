@@ -53,7 +53,7 @@ const ProfilePage = () => {
     if (mode === "view") {
       setMode("edit");
     } else {
-      const query = `http://localhost:3000/user/data/${user?.id}`;
+      const query = `${base_url}/user/data/${user?.id}`;
       console.log(query);
       fetch(query, {
         method: "PUT",
@@ -95,7 +95,7 @@ const ProfilePage = () => {
       cancelButtonText: "No",
     }).then((result) => {
       if (result.isConfirmed) {
-        const query = `http://localhost:3000/user/data/${user?.id}`;
+        const query = `${base_url}/user/data/${user?.id}`;
         fetch(query, {
           method: "DELETE",
         })
@@ -200,10 +200,7 @@ const ProfilePage = () => {
         </div>
       )}
 
-      <div
-        className="col-12 mt-4 d-flex justify-content-center"
-        style={{ gap: "10px" }}
-      >
+      <div className="col-12 mt-4 d-flex justify-content-center profile-button-group">
         {mode === "edit" && (
           <button
             className="mb-4 btn btn-secondary"
