@@ -7,23 +7,18 @@ import WorkoutJournal from "./workoutJournal";
 import { useUser } from "../SesssionManager/session";
 import "react-calendar/dist/Calendar.css";
 import "./workoutLogPage.css";
-import { LocalUserData } from "../authenticatePage/userInformation";
 const WorkoutLogPage = () => {
   const base_url = import.meta.env.VITE_BASE_URL;
   const { user } = useUser();
 
   //workout at selected date.
   const [currentDayWorkout, setCurrentDayWorkout] = useState<any[]>([]);
-  const [allWorkout, setAllWorkout] = useState<any[]>([]);
   //Progress at a selected date
   const [currentDayProgress, setCurrentDayProgress] = useState<any>(null);
   //current mode
   const [editing, setEditing] = useState(false);
 
-  // Upon page loading, set localUser with db database
-  //For initial load, also set currentDayProgress with today's date
-  const [localUser, setLocalUser] = useState<LocalUserData | null>(null);
-  useEffect(() => {
+  const dataSetUp = (date: Date) => {
     const storedUser = localStorage.getItem("user");
     const currentUser = user || (storedUser ? JSON.parse(storedUser) : null);
     const fetchData = () => {
@@ -43,11 +38,8 @@ const WorkoutLogPage = () => {
           return response.json();
         })
         .then((data) => {
-          setLocalUser(data.data);
           const foundProgress = data.data?.progress.find((element: any) => {
-            return (
-              element.recordedOn.substring(0, 10) === dateFormatter(new Date())
-            );
+            return element.recordedOn.substring(0, 10) === dateFormatter(date);
           });
           setCurrentDayProgress(foundProgress || null);
         })
@@ -76,11 +68,8 @@ const WorkoutLogPage = () => {
           return response.json();
         })
         .then((data) => {
-          setAllWorkout(data.data);
           const foundWorkout = data.data?.filter((element: any) => {
-            return (
-              element.recordedOn.substring(0, 10) === dateFormatter(new Date())
-            );
+            return element.recordedOn.substring(0, 10) === dateFormatter(date);
           });
           setCurrentDayWorkout(foundWorkout || null);
         })
@@ -94,6 +83,9 @@ const WorkoutLogPage = () => {
     };
     fetchData();
     fetchDataWorkout();
+  };
+  useEffect(() => {
+    dataSetUp(new Date());
   }, []);
 
   //helper for Calendar
@@ -121,17 +113,7 @@ const WorkoutLogPage = () => {
   //when date changes
   const onChange = (date: any) => {
     setSelectedDate(dateFormatter(date));
-    //update currentDayWorkout and currentDayWeight
-    const foundWorkout = allWorkout.filter((element: any) => {
-      return element.recordedOn?.substring(0, 10) === dateFormatter(date);
-    });
-    setCurrentDayWorkout(foundWorkout || null);
-
-    // setCurrentDayWorkout(foundWorkout || null);
-    const foundProgress = localUser?.progress.find((element: any) => {
-      return element.recordedOn?.substring(0, 10) === dateFormatter(date);
-    });
-    setCurrentDayProgress(foundProgress || null);
+    dataSetUp(date);
   };
 
   const addWorkoutHandler = () => {

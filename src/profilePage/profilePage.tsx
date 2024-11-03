@@ -35,6 +35,7 @@ const ProfilePage = () => {
           return response.json();
         })
         .then((data) => {
+          console.log("When profile loads: ", data.data);
           setLocalUser(data.data);
           setTemporaryChanges(data.data);
         })
@@ -150,7 +151,14 @@ const ProfilePage = () => {
   }
   const getMostRecentWeight = (): number | null => {
     if (localUser && localUser.progress && localUser.progress.length > 0) {
-      const sortedWeights = localUser.progress.sort(
+      const filteredProgress = localUser.progress.filter(
+        (entry: any) => entry.weight > 0
+      );
+      if (filteredProgress.length === 0) {
+        return null;
+      }
+
+      const sortedWeights = filteredProgress.sort(
         (a: any, b: any) =>
           new Date(b.recordedOn).getTime() - new Date(a.recordedOn).getTime()
       );
@@ -175,7 +183,7 @@ const ProfilePage = () => {
             <h5>☎️ Phone : {localUser?.phoneNumber}</h5>
           )}
 
-          {localUser?.progress && localUser?.progress.length > 0 && (
+          {getMostRecentWeight() && (
             <h5>🏃‍♂️ Most Recent Bodyweight : {getMostRecentWeight()} kgs</h5>
           )}
         </div>

@@ -76,10 +76,17 @@ const WorkoutJournal: React.FC<WorkoutJournalProps> = ({
       ) : (
         <div>
           <h4>Workout Journal</h4>
-
-          {rate && <h5>Work out was {rate}</h5>}
-          {weight && <h5>As of today, I weigh {weight} pounds</h5>}
-          {journal && <p>{journal}</p>}
+          {!rate && !weight && !journal ? (
+            <div>No content</div>
+          ) : (
+            <div>
+              {rate && <h5>Work out was {rate}</h5>}
+              {weight !== undefined && weight > 0 && (
+                <h5>As of today, I weigh {weight} pounds</h5>
+              )}
+              {journal && <p>{journal}</p>}
+            </div>
+          )}
         </div>
       )}
     </div>
