@@ -8,8 +8,47 @@ const SignIn = (props: any) => {
   const navigate = useNavigate();
   const { login } = useUser();
   const forgotPasswordHandler = () => {
-    console.log("Forgot password clicked");
-    navigate("/");
+    Swal.fire({
+      title: "Forgot Password",
+      text: "Please enter your email address",
+      input: "email",
+      inputAttributes: {
+        autocapitalize: "off",
+      },
+      showCancelButton: true,
+      confirmButtonText: "Submit",
+      showLoaderOnConfirm: true,
+      preConfirm: (email) => {
+        const query = `http://localhost:3000/user/reset`;
+        fetch(query, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            emailAddress: email,
+          }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              return response.json().then((error) => {
+                throw error.error;
+              });
+            }
+            return response.json();
+          })
+          .then((data) => {
+            Swal.fire({
+              title: "Email sent",
+              text: "Please check your email.",
+            });
+          })
+          .catch((error) => {
+            Swal.fire(error || "Something went wrong", "", "error");
+          });
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
+    });
   };
 
   const signInHandler = () => {
