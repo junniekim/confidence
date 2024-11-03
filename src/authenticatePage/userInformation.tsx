@@ -132,7 +132,6 @@ const UserInformation = ({
         <div className="input-header">Phone Number</div>
         <input
           type="tel"
-          required
           className="form-control"
           id="phone"
           value={data?.phoneNumber || ""}
