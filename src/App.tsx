@@ -5,6 +5,7 @@ import AuthenticatePage from "./authenticatePage/authenticatePage";
 import Navigation from "./navigation/navigation";
 import ProfilePage from "./profilePage/profilePage";
 import WorkoutListPage from "./workoutListPage/workoutListPage";
+import Footer from "./footer/footer";
 function App() {
   return (
     <Router>
@@ -17,6 +18,7 @@ function App() {
           <Route path="/workout" Component={WorkoutListPage} />
         </Routes>
       </div>
+      <Footer />
     </Router>
   );
 }
