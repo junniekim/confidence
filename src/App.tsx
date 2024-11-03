@@ -7,6 +7,7 @@ import ProfilePage from "./profilePage/profilePage";
 import WorkoutListPage from "./workoutListPage/workoutListPage";
 import Footer from "./footer/footer";
 import WorkoutLogPage from "./workoutLogPage/workoutLogPage";
+import ProgressPage from "./progressPage/progressPage";
 function App() {
   return (
     <Router>
@@ -18,6 +19,7 @@ function App() {
           <Route path="/profile" Component={ProfilePage} />
           <Route path="/workout" Component={WorkoutListPage} />
           <Route path="/log" Component={WorkoutLogPage} />
+          <Route path="/progress" Component={ProgressPage} />
         </Routes>
       </div>
       <Footer />
