@@ -30,9 +30,9 @@ const SignUp = (props: any) => {
         return response.json();
       })
       .then((data) => {
-        login(data);
+        login(data.data);
         Swal.fire(
-          "Welcome to Moosecles!",
+          "Welcome to Confidence!",
           "Enjoy our members-only features",
           "success"
         ).then(() => {
@@ -70,7 +70,7 @@ const SignUp = (props: any) => {
             </button>
             <div>
               <small>
-                <button className="text-button" onClick={props.onToggle}>
+                <button className="mb-4 text-button" onClick={props.onToggle}>
                   Already have an account?
                 </button>
               </small>

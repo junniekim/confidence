@@ -36,7 +36,7 @@ const SignIn = (props: any) => {
         return response.json();
       })
       .then((data) => {
-        login(data);
+        login(data.data);
         Swal.fire("Success", "You have successfully signed in", "success").then(
           () => {
             navigate("/");

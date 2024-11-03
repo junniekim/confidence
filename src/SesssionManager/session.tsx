@@ -5,8 +5,6 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 
 export interface UserData {
   id: string;
-  firstName: string;
-  lastName: string;
 }
 
 interface UserContextType {

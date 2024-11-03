@@ -1,13 +1,18 @@
 import "./sharedAuthenticate.css";
 
-interface LocalUserData {
+export interface LocalUserData {
   firstName: string;
   lastName: string;
   birthday: Date;
   emailAddress: string;
   phoneNumber: string;
   password: string;
-  // Add any other properties required by this component
+  bodyWeightHistory: BodyWeightEntry[];
+}
+
+export interface BodyWeightEntry {
+  recordedOn: Date; // or string if you prefer
+  weight: number;
 }
 
 const formatPhoneNumber = (value: string) => {
@@ -83,12 +88,15 @@ const UserInformation = ({
       </div>
       <div className="form-group mb-2">
         <label>
-          <div className="input-header">Birthday</div>
+          <div className="input-header">
+            Birthday <span className="red-star">*</span>
+          </div>
         </label>
         <input
           type="date"
           className="form-control"
           id="birthday"
+          required
           value={data?.birthday?.toString().substring(0, 10) || ""}
           onChange={(e) =>
             dataChange &&
@@ -146,6 +154,7 @@ const UserInformation = ({
       <div className="form-group mb-2">
         <label>
           <div className="input-header">
+            <span>{header && header.startsWith("Update") && "New "}</span>
             Password <span className="red-star">*</span>
           </div>
         </label>

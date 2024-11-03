@@ -66,6 +66,21 @@ const Navigation: React.FC = () => {
           </Link>
         )}
         {user && (
+          <Link
+            to="/profile"
+            className={`navButton ${
+              location.pathname === "/authenticate" ? "active" : ""
+            }`}
+            onClick={() => {
+              if (isOpen) {
+                setIsOpen(false);
+              }
+            }}
+          >
+            Profile
+          </Link>
+        )}
+        {user && (
           <Link to="/" className="navButton">
             <button
               className="navButton sign-out"
