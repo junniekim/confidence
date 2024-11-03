@@ -1,8 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-// Import this class and access context data through user
-// Upon sign in / out context will be updated
-
 export interface UserData {
   id: string;
 }

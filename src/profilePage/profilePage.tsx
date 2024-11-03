@@ -134,7 +134,7 @@ const ProfilePage = () => {
   //Util
   function getAge(): number {
     if (localUser == null) {
-      return 0; // Return 0 if localUser is null
+      return 0;
     }
     const today: Date = new Date();
     const birthDate: Date = new Date(localUser.birthday);

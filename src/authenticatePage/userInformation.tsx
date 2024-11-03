@@ -11,7 +11,7 @@ export interface LocalUserData {
 }
 
 export interface BodyWeightEntry {
-  recordedOn: Date; // or string if you prefer
+  recordedOn: Date;
   weight: number;
 }
 
@@ -141,7 +141,6 @@ const UserInformation = ({
           onChange={(e: any) => {
             const inputNumber = e.target.value;
             const formattedNumber = formatPhoneNumber(inputNumber);
-            // Update the state with the formatted phone number
             dataChange &&
               dataChange((prevState: any) => ({
                 ...prevState,

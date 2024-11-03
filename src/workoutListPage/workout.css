@@ -1,0 +1,23 @@
+.workout-box {
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #dcdcdc;
+  border-width: 1px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.each-image {
+  max-height: 150px;
+  max-width: 100%;
+  object-fit: cover;
+}
