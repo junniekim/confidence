@@ -102,27 +102,14 @@ const ProgressPage = () => {
       });
   }, []);
 
-  const onChange = (date: any) => {
-    console.log("Date", date);
+  useEffect(() => {
     let bodyGraphInput: any[] = [];
-    setSelectedDate(
-      //03-01-2024
-      date.toLocaleString("en-US", { month: "long", year: "numeric" })
-    );
-    userProgress.filter((element: any) => {
+
+    userProgress?.filter((element: any) => {
       if (
         new Date(element.recordedOn)
-          .toLocaleString("en-US", {
-            year: "numeric",
-            month: "2-digit",
-          })
-          .replace(/\//g, "-") ===
-        date
-          .toLocaleString("en-US", {
-            year: "numeric",
-            month: "2-digit",
-          })
-          .replace(/\//g, "-")
+          .toLocaleString("en-US", { month: "long", year: "numeric" })
+          .replace(/\//g, "-") === selectedDate
       ) {
         bodyGraphInput.push([
           Number(
@@ -145,7 +132,6 @@ const ProgressPage = () => {
       bodyGraphInput.unshift(["Day", "Body Weight (Ibs)"]);
       setBodyWeightData(bodyGraphInput);
     }
-
     let weightLiftingGraphInput: any[] = [];
     weightLiftingProgress?.filter((element: any) => {
       if (
@@ -176,6 +162,12 @@ const ProgressPage = () => {
       weightLiftingGraphInput.unshift(["Day", "Body Weight (Ibs)"]);
       setWeightLiftingData(weightLiftingGraphInput);
     }
+  }, [selectedDate, chosenWorkout]);
+
+  const onChange = (date: any) => {
+    setSelectedDate(
+      date.toLocaleString("en-US", { month: "long", year: "numeric" })
+    );
   };
 
   const tileClassName = ({
