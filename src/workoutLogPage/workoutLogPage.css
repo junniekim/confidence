@@ -1,0 +1,26 @@
+.custom-tile-highlight {
+  background-color: transparent;
+  color: black;
+}
+td {
+  padding: 5px;
+}
+.th-tr {
+  border: 1px solid black;
+}
+.workout-tracker-box {
+  margin: 0.5px;
+  gap: 5px;
+  justify-content: center;
+}
+.slight-gap {
+  gap: 10px;
+}
+.text-button-delete {
+  background: none;
+  border: none;
+  color: black;
+}
+.text-button-delete:hover {
+  color: red;
+}

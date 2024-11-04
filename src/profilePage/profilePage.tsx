@@ -35,6 +35,7 @@ const ProfilePage = () => {
           return response.json();
         })
         .then((data) => {
+          console.log("When profile loads: ", data.data);
           setLocalUser(data.data);
           setTemporaryChanges(data.data);
         })
@@ -55,7 +56,6 @@ const ProfilePage = () => {
       setMode("edit");
     } else {
       const query = `${base_url}/user/data/${user?.id}`;
-      console.log(query);
       fetch(query, {
         method: "PUT",
         headers: {
@@ -150,12 +150,15 @@ const ProfilePage = () => {
     return age;
   }
   const getMostRecentWeight = (): number | null => {
-    if (
-      localUser &&
-      localUser.bodyWeightHistory &&
-      localUser.bodyWeightHistory.length > 0
-    ) {
-      const sortedWeights = localUser.bodyWeightHistory.sort(
+    if (localUser && localUser.progress && localUser.progress.length > 0) {
+      const filteredProgress = localUser.progress.filter(
+        (entry: any) => entry.weight > 0
+      );
+      if (filteredProgress.length === 0) {
+        return null;
+      }
+
+      const sortedWeights = filteredProgress.sort(
         (a: any, b: any) =>
           new Date(b.recordedOn).getTime() - new Date(a.recordedOn).getTime()
       );
@@ -166,7 +169,7 @@ const ProfilePage = () => {
 
   return (
     <div className="row">
-      <TitleHeader title="🌟My Profile"></TitleHeader>
+      <TitleHeader title="🌟Profile"></TitleHeader>
       {mode === "view" ? (
         <div className="col-12 text-center">
           <h2>
@@ -180,10 +183,9 @@ const ProfilePage = () => {
             <h5>☎️ Phone : {localUser?.phoneNumber}</h5>
           )}
 
-          {localUser?.bodyWeightHistory &&
-            localUser?.bodyWeightHistory.length > 0 && (
-              <h5>🏃‍♂️ Most Recent Bodyweight : {getMostRecentWeight()} kgs</h5>
-            )}
+          {getMostRecentWeight() && (
+            <h5>🏃‍♂️ Most Recent Bodyweight : {getMostRecentWeight()} Ibs</h5>
+          )}
         </div>
       ) : (
         <div className="row">

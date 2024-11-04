@@ -7,12 +7,14 @@ export interface LocalUserData {
   emailAddress: string;
   phoneNumber: string;
   password: string;
-  bodyWeightHistory: BodyWeightEntry[];
+  progress: BodyJourneyEntry[];
 }
 
-export interface BodyWeightEntry {
+export interface BodyJourneyEntry {
   recordedOn: Date;
   weight: number;
+  journal: string;
+  rate: number;
 }
 
 const formatPhoneNumber = (value: string) => {

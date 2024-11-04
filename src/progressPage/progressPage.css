@@ -1,0 +1,32 @@
+.custom-tile-highlight {
+  background-color: transparent;
+  color: black;
+}
+.image-container {
+  display: flex;
+  overflow-x: auto; /* Allow horizontal scrolling */
+  white-space: nowrap; /* Prevent images from wrapping to the next line */
+}
+
+.image-wrapper {
+  margin-right: 10px;
+  text-align: center; /* Center align the text */
+}
+
+.image-wrapper img {
+  width: auto;
+  height: 200px;
+}
+
+.image-wrapper p {
+  margin-top: 5px; /* Add margin between image and text */
+}
+
+.workout-selector {
+  margin: 0 5px 0 5px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #dcdcdc;
+  border-width: 1px;
+  padding: 20px;
+}
