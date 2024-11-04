@@ -21,3 +21,12 @@
 .image-wrapper p {
   margin-top: 5px; /* Add margin between image and text */
 }
+
+.workout-selector {
+  margin: 0 5px 0 5px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #dcdcdc;
+  border-width: 1px;
+  padding: 20px;
+}

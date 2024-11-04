@@ -110,7 +110,7 @@ const WorkoutListPage = () => {
 
   return (
     <div>
-      <TitleHeader title="✏️Workout List"></TitleHeader>
+      <TitleHeader title="✏️Workouts"></TitleHeader>
       <div className="row d-flex flex-row workout-navigator">
         <Select
           className="mt-2 mb-2  col-12 col-md-3 col-lg-2"

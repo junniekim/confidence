@@ -169,7 +169,7 @@ const ProfilePage = () => {
 
   return (
     <div className="row">
-      <TitleHeader title="🌟My Profile"></TitleHeader>
+      <TitleHeader title="🌟Profile"></TitleHeader>
       {mode === "view" ? (
         <div className="col-12 text-center">
           <h2>
@@ -184,7 +184,7 @@ const ProfilePage = () => {
           )}
 
           {getMostRecentWeight() && (
-            <h5>🏃‍♂️ Most Recent Bodyweight : {getMostRecentWeight()} kgs</h5>
+            <h5>🏃‍♂️ Most Recent Bodyweight : {getMostRecentWeight()} Ibs</h5>
           )}
         </div>
       ) : (

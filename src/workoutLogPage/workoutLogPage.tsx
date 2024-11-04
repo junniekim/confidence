@@ -203,7 +203,7 @@ const WorkoutLogPage = () => {
 
   return (
     <div>
-      <TitleHeader title="💪My Tracking"></TitleHeader>
+      <TitleHeader title="💪Workout Log"></TitleHeader>
       <div className="d-flex justify-content-center">
         {!editing && (
           <Calendar

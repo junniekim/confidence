@@ -8,7 +8,7 @@ import "./progressPage.css";
 import Swal from "sweetalert2";
 
 export const bodyWeightOptions = {
-  title: "Body weight change",
+  title: "Body Weight Graph",
   curveType: "function",
   legend: "none",
   vAxis: {
@@ -23,7 +23,7 @@ export const bodyWeightOptions = {
   pointSize: 5,
 };
 export const weightLiftingOptions = {
-  title: "Max weight change",
+  title: "Max Weight Graph",
   curveType: "function",
   legend: "none",
   vAxis: {
@@ -186,7 +186,7 @@ const ProgressPage = () => {
   };
   return (
     <div>
-      <TitleHeader title="📈My Progress"></TitleHeader>
+      <TitleHeader title="📈Analysis"></TitleHeader>
       <div className="d-flex justify-content-center">
         <Calendar
           maxDetail="year"
@@ -195,7 +195,7 @@ const ProgressPage = () => {
           tileClassName={tileClassName}
         />
       </div>
-      <h4 className="text-center mt-4">Your progress in {selectedDate}</h4>
+      <h2 className="text-center mt-4">Body weight change in {selectedDate}</h2>
       {bodyWeightData != null ? (
         <Chart
           chartType="LineChart"
@@ -209,7 +209,9 @@ const ProgressPage = () => {
         <h5 className="mt-3 text-center">No Body Weight Recorded</h5>
       )}
       <hr></hr>
-      <h4 className="text-center mt-4">Your progress in {selectedDate}</h4>
+      <h2 className="text-center mt-4">
+        Max weight lifted change in {selectedDate}
+      </h2>
       {chosenWorkout != null &&
         (weightLiftingData != null ? (
           <Chart
@@ -223,24 +225,33 @@ const ProgressPage = () => {
         ) : (
           <h5 className="mt-3 text-center">No Weight lifting Recorded</h5>
         ))}
-      <h5 className="mt-3 text-center">Please choose workout</h5>
-      <select
-        name="workouts"
-        id="workouts"
-        className="form-control"
-        value={chosenWorkout}
-        onChange={(e) => {
-          setChosenWorkout(e.target.value);
-          onChange(selectedDate);
-        }}
-      >
-        <option value="">Select a workout</option>
-        {dropdownOptions?.map((workout: any) => (
-          <option key={Math.random().toFixed(8)} value={workout.workout._id}>
-            {workout.workout.name}
-          </option>
-        ))}
-      </select>
+      <div className="d-flex justify-content-center align-items-cente">
+        <div className="mt-3 workout-selector w-25">
+          <h5 className=" text-center">Please choose workout</h5>
+          <div className="d-flex justify-content-center align-items-center">
+            <select
+              className="w-100 form-control text-center "
+              name="workouts"
+              id="workouts"
+              value={chosenWorkout}
+              onChange={(e) => {
+                setChosenWorkout(e.target.value);
+                onChange(selectedDate);
+              }}
+            >
+              <option value="">Select a workout</option>
+              {dropdownOptions?.map((workout: any) => (
+                <option
+                  key={Math.random().toFixed(8)}
+                  value={workout.workout._id}
+                >
+                  {workout.workout.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
