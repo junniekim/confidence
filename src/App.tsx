@@ -24,7 +24,9 @@ function App() {
           <Route
             path="/profile"
             element={
-              <ProtectedRoute isAuthenticated={!!user?.id}>
+              <ProtectedRoute
+                isAuthenticated={!!user?.id || !!localStorage.getItem("user")}
+              >
                 <ProfilePage />
               </ProtectedRoute>
             }
@@ -32,7 +34,9 @@ function App() {
           <Route
             path="/workout"
             element={
-              <ProtectedRoute isAuthenticated={!!user?.id}>
+              <ProtectedRoute
+                isAuthenticated={!!user?.id || !!localStorage.getItem("user")}
+              >
                 <WorkoutListPage />
               </ProtectedRoute>
             }
@@ -40,7 +44,9 @@ function App() {
           <Route
             path="/log"
             element={
-              <ProtectedRoute isAuthenticated={!!user?.id}>
+              <ProtectedRoute
+                isAuthenticated={!!user?.id || !!localStorage.getItem("user")}
+              >
                 <WorkoutLogPage />
               </ProtectedRoute>
             }
@@ -48,7 +54,9 @@ function App() {
           <Route
             path="/progress"
             element={
-              <ProtectedRoute isAuthenticated={!!user?.id}>
+              <ProtectedRoute
+                isAuthenticated={!!user?.id || !!localStorage.getItem("user")}
+              >
                 <ProgressPage />
               </ProtectedRoute>
             }

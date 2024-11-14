@@ -162,7 +162,7 @@ const ProgressPage = () => {
       weightLiftingGraphInput.unshift(["Day", "Body Weight (Ibs)"]);
       setWeightLiftingData(weightLiftingGraphInput);
     }
-  }, [selectedDate, chosenWorkout]);
+  }, [selectedDate, chosenWorkout, userProgress]);
 
   const onChange = (date: any) => {
     setSelectedDate(
