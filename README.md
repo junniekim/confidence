@@ -9,6 +9,15 @@
     <li>Graphical visualization of progress, including body weight and heaviest weight lifted per workout</li>
     <li>Comprehensive logging capabilities for tracking workout details, body metrics, journal entries, and performance ratings</li>
 </ul>
-<p align="center"> 
-  <img align="center" src="sort.png">
-</p>
+  
+<div align="center"> 
+  <h2> Graphing Page
+    </h2>
+  <img align="center" src="src/assets/graph.png">
+   <h2> Workout Page
+    </h2>
+   <img align="center" src="src/assets/list.png">
+  <h2> Logger
+    </h2>
+   <img align="center" src="src/assets/log.png">
+</div>
